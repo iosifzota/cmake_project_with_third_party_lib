@@ -15,6 +15,14 @@ if (is_empty)
 endif()
 message("\n=====\nBuild type is ${APP_CMAKE_BUILD_TYPE}\n=====\n")
 
+# Setup binary output directory
+set(APP_BIN_OUTPUT_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${APP_CMAKE_BUILD_TYPE})
+
+# Create output directory if it does not exist
+if (NOT EXISTS ${APP_BIN_OUTPUT_DIRECTORY})
+	FILE(MAKE_DIRECTORY ${APP_BIN_OUTPUT_DIRECTORY})
+endif()
+
 add_subdirectory(src/Library01)
 add_subdirectory(src/Event)
 add_subdirectory(src/Future)
